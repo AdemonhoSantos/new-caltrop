@@ -1,0 +1,184 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+}
+
+
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.5;
+  background-image: url('http://i.imgur.com/1TCNz26.png');
+  background-repeat:repeat;
+}
+
+a {
+  color:#D9FFF2;
+
+}
+
+.x{
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+  transform: translateX(-100%);
+  transition: transform 0.3s;
+
+}
+
+.calendar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  height: 90%;
+  padding: 5%;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b7d7cf+0,b7d7cf+100&0.5+0,0.5+100 */
+background: -moz-linear-gradient(top, rgba(183,215,207,0.5) 0%, rgba(13, 190, 151, 0.5) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, rgba(183,215,207,0.5) 0%,rgba(13, 190, 151, 0.5) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, rgba(183,215,207,0.5) 0%,rgba(13, 190, 151, 0.5) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0DBE97', endColorstr='#80b7d7cf',GradientType=0 ); /* IE6-9 */
+  box-shadow: 0 1em 1em rgba(0, 0, 0, 0.55);
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+h1 {
+  color: white;
+  font-size: 25px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  display: flex;
+  flex-basis: 20%;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: flex-end;
+}
+h1 span {
+  font-size: 30px;
+  letter-spacing: 0.5rem;
+  font-weight: bold;
+}
+
+.container {
+  color: #333;
+  border-bottom: 1px solid #95D0C0;
+  border-right: 1px solid #95D0C0;
+  display: flex;
+  flex: 1;
+  flex-flow: row wrap;
+}
+
+
+.block {
+  position: relative;
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  font-size: 0.74rem;
+  border-top: 1px solid #95D0C0;
+  border-left: 1px solid #95D0C0;
+  display: flex;
+  flex-basis: 14.28571429%;
+}
+.block.weekday {
+  background-color: #E9F4F1;
+  color:#49524F !important;
+  justify-content: center;
+  align-items: center;
+}
+.block.day {
+  padding: 3px 6px;
+  justify-content: flex-end;
+}
+.block.day:before {
+  content: attr(value);
+}
+.block.day:after {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  bottom: 3px;
+  left: 3px;
+  background-color: #e93;
+  border-radius: 50%;
+  text-align: center;
+}
+.block.day:not(:empty) {
+  background-color: #CBE8E0;
+  color:#346051 !important;
+}
+/*.block.day:not(:empty):after {
+  opacity: 0.9;
+}*/
+
+.block.day:hover:not(:empty) {
+   transition: background-color 0.5s ease;
+  background-color: #61907F;
+  color: #EAF3F0 !important;
+}
+.block.day:hover:not(:empty):after {
+  background-color: #fff;
+}
+.block .contents {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  transition: background-color 0.1s ease;
+  visibility: hidden;
+}
+.block .contents p {
+  position: relative;
+background-color: #313735;
+  box-shadow: 0 1em 1em rgba(0, 0, 0, 0.55);
+  color:#C3C4C4;
+  max-width: 90%;
+  padding: 16px;
+  margin: 16px;
+  z-index: 50;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+  transform: translateX(-100%);
+  transition: transform 0.3s;
+  counter-increment: i;
+}
+.block .contents p:nth-child(even) {
+  transition-delay: 0.05s;
+}
+
+.fechar
+{
+  color:white;
+}
+
+input[type="checkbox"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  z-index: 10;
+  cursor: pointer;
+  pointer-events: auto;
+}
+input[type="checkbox"]:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+input[type="checkbox"]:checked {
+  position: relative;
+  z-index: 30;
+}
+input[type="checkbox"]:checked + .contents {
+  visibility: visible;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 25;
+}
+input[type="checkbox"]:checked + .contents p {
+  transform: translateX(0%);
+}
